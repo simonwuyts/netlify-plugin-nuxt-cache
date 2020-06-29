@@ -7,13 +7,6 @@ const getCacheDirs = (constants) => [
 
 module.exports = {
   async onPreBuild({ constants, utils }) {
-    // print a helpful message if the publish dir is misconfigured
-    if (process.cwd() === constants.PUBLISH_DIR) {
-      utils.build.failBuild(
-        `Gatsby sites must publish the public directory, but your site’s publish directory is set to “${constants.PUBLISH_DIR}”. Please set your publish directory to your Gatsby site’s public directory.`,
-      );
-    }
-
     const cacheDirs = getCacheDirs(constants);
 
     if (await utils.cache.restore(cacheDirs)) {
